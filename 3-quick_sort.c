@@ -12,7 +12,7 @@ void quick_sort(int *array, size_t size)
 	if (size < 2)
 		return;
 
-	qs(array, 0, (int)size, size);
+	qs(array, 0, (int)size - 1, size);
 }
 
 
