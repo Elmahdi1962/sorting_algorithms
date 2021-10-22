@@ -9,7 +9,7 @@
 
 void quick_sort(int *array, size_t size)
 {
-	if (size < 2)
+	if (size < 2 || array == NULL)
 		return;
 
 	qs(array, 0, (int)size - 1, size);
@@ -56,15 +56,20 @@ int partition(int *arr, int low, int high, size_t size)
 		if (arr[j] < pivot)
 		{
 			++i;
+			if (j == i)
+				continue;
 			/*swaping*/
 			tmp = arr[j];
 			arr[j] = arr[i];
 			arr[i] = tmp;
+			print_array(arr, size);
 		}
 	}
 	tmp = arr[high];
 	arr[high] = arr[i + 1];
 	arr[i + 1] = tmp;
-	print_array(arr, size);
+	if (i != high - 1)
+		print_array(arr, size);
+
 	return (i + 1);
 }
