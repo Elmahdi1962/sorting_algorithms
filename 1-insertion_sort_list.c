@@ -22,19 +22,25 @@ void insertion_sort_list(listint_t **list)
 		{
 			if (current->n < tmp->n)
 			{
-				current->prev = tmp->prev;
-				tmp->next = current->next;
+				if (current->prev != NULL)
+				{
+					current->prev->next = current->next;
+				}
+				if (current->next != NULL)
+				{
+					current->next->prev = current->prev;
+				}
 				current->next = tmp;
+				if (tmp->prev)
+					tmp->prev->next = current;
+				current->prev = tmp->prev;
 				tmp->prev = current;
-				if (tmp->next != NULL)
-					tmp->next->prev = tmp;
 				if (current->prev == NULL)
 				{
 					*list = current;
 					print_list(*list);
 					break;
 				}
-				current->prev->next = current;
 				tmp = current->prev;
 				print_list(*list);
 			} else
