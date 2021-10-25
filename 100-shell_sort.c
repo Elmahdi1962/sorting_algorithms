@@ -19,7 +19,7 @@ void shell_sort(int *array, size_t size)
 		{
 			tmp = array[out];
 			in = out;
-			while (in > h - 1 && array[in - h] >= tmp)
+			while (in >= h && array[in - h] > tmp)
 			{
 				array[in] = array[in - h];
 				in = in - h;
