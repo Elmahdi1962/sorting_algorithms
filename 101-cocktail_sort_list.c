@@ -34,12 +34,13 @@ void cocktail_sort_list(listint_t **list)
 		for (j = 0; j < i; j++)
 			start = start->next;
 		swapped = 0, e++;
-		while (end->next)
+		while (end && end->next != NULL)
 			end = end->next;
 		for (j = 0; j < e; j++)
 			end = end->prev;
 		current = end;
-		while (current->prev && current != start->prev)
+
+		while (current && current->prev && current != start->prev)
 		{
 			if (current->n > current->next->n)
 			{
