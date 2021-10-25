@@ -17,6 +17,7 @@ void insertion_sort_list(listint_t **list)
 	while (head != NULL)
 	{
 		current = head;
+		head = head->next;
 		tmp = current->prev;
 		while (current && tmp)
 		{
@@ -46,6 +47,5 @@ void insertion_sort_list(listint_t **list)
 			} else
 				tmp = tmp->prev;
 		}
-		head = head->next;
 	}
 }
