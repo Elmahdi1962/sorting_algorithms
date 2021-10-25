@@ -39,7 +39,6 @@ void cocktail_sort_list(listint_t **list)
 		for (j = 0; j < e; j++)
 			end = end->prev;
 		current = end;
-
 		while (current && current->prev && current != start->prev)
 		{
 			if (current->n > current->next->n)
