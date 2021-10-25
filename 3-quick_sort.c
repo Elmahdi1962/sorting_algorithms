@@ -70,10 +70,13 @@ int partition(int *arr, int low, int high, size_t size)
 	}
 	if (i < high - 1)
 	{
-		tmp = arr[high];
-		arr[high] = arr[i + 1];
-		arr[i + 1] = tmp;
-		print_array(arr, size);
+		if (arr[i + 1] != arr[high])
+		{
+			tmp = arr[high];
+			arr[high] = arr[i + 1];
+			arr[i + 1] = tmp;
+			print_array(arr, size);
+		}
 		return (i + 1);
 	}
 
