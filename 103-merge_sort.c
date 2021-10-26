@@ -9,133 +9,133 @@
 
 void merge_sort(int *array, size_t size)
 {
-	int *B;
+	int *b;
 
 	if (array == NULL || size < 2)
 		return;
 
-	B = malloc(sizeof(int) * size + 1);
-	if (!B)
+	b = malloc(sizeof(int) * size + 1);
+	if (!b)
 		return;
 
-	TopDownMergeSort(array, B, size);
-	free(B);
+	TopDownMergeSort(array, b, size);
+	free(b);
 }
 
 /**
  * TopDownMergeSort - Top Down Merge Sort
- * @A: array A
- * @B: array B
+ * @a: array a
+ * @b: array b
  * @n: size of array
  * Return: void
  */
 
-void TopDownMergeSort(int *A, int *B, int n)
+void TopDownMergeSort(int *a, int *b, int n)
 {
-	/* Array int *A has the items to sort; array int *B is a work array.*/
-	CopyArray(A, 0, n, B);           /* one time copy of int *A to int *B */
-	TopDownSplitMerge(B, 0, n, A);   /* sort data from int *B into int *A */
+	/* array int *a has the items to sort; array int *b is a work array.*/
+	copyarray(a, 0, n, b);           /* one time copy of int *a to int *b */
+	TopDownSplitMerge(b, 0, n, a);   /* sort data from int *b into int *a */
 }
 
 /**
  * TopDownSplitMerge - Top Down Split Merge
- * @B: array B
- * @iBegin: start index
- * @iEnd: end index
- * @A: array A
+ * @b: array b
+ * @ibegin: start index
+ * @iend: end index
+ * @a: array a
  * Return: void
  */
 
-void TopDownSplitMerge(int *B, int iBegin, int iEnd, int *A)
+void TopDownSplitMerge(int *b, int ibegin, int iend, int *a)
 {
-	/* Split int *A into 2 runs, sort both runs into int *B,*/
-	/*merge both runs from int *B to int *A*/
-	/* iBegin is inclusive; iEnd is exclusive (A[iEnd] is not in the set).*/
-	if (iEnd - iBegin <= 1)                     /* if run size == 1*/
+	/* Split int *a into 2 runs, sort both runs into int *b,*/
+	/*merge both runs from int *b to int *a*/
+	/* ibegin is inclusive; iend is exclusive (a[iend] is not in the set).*/
+	if (iend - ibegin <= 1)                     /* if run size == 1*/
 	{
 		return;	                                /*   consider it sorted*/
 	}
 	/* split the run longer than 1 item into halves*/
-	int iMiddle = (iEnd + iBegin) / 2;              /*iMiddle = mid point*/
-	/* recursively sort both runs from array int *A into int *B*/
-	TopDownSplitMerge(A, iBegin,  iMiddle, B);  /* sort the left  run*/
-	TopDownSplitMerge(A, iMiddle,    iEnd, B);  /* sort the right run*/
-	/* merge the resulting runs from array int *B into int *A*/
-	TopDownMerge(B, iBegin, iMiddle, iEnd, A);
+	int imiddle = (iend + ibegin) / 2;              /*imiddle = mid point*/
+	/* recursively sort both runs from array int *a into int *b*/
+	TopDownSplitMerge(a, ibegin,  imiddle, b);  /* sort the left  run*/
+	TopDownSplitMerge(a, imiddle,    iend, b);  /* sort the right run*/
+	/* merge the resulting runs from array int *b into int *a*/
+	TopDownMerge(b, ibegin, imiddle, iend, a);
 }
 
 
 /**
  * TopDownMerge - tom down merger
- * Left source half is A[ iBegin:iMiddle-1]
- * Right source half is A[iMiddle:iEnd-1   ]
- * Result is            B[ iBegin:iEnd-1   ]
- * @A: array A, the unsorted array
- * @iBegin: start index
- * @iMiddle: middle index that splits the subarrays
- * @iEnd: end index
- * @B: array b where sorted array will be
+ * Left source half is a[ ibegin:imiddle-1]
+ * Right source half is a[imiddle:iend-1   ]
+ * Result is            b[ ibegin:iend-1   ]
+ * @a: array a, the unsorted array
+ * @ibegin: start index
+ * @imiddle: middle index that splits the subarrays
+ * @iend: end index
+ * @b: array b where sorted array will be
  * Return: void
  */
 
-void TopDownMerge(int *A, int iBegin, int iMiddle, int iEnd, int *B)
+void TopDownMerge(int *a, int ibegin, int imiddle, int iend, int *b)
 {
-	int i = iBegin, j = iMiddle, k;
+	int i = ibegin, j = imiddle, k;
 
 	/* While there are elements in the left or right runs...*/
-	for (k = iBegin; k < iEnd; k++)
+	for (k = ibegin; k < iend; k++)
 	{
 		/* If left run head exists and is <= existing right run head.*/
-		if (i < iMiddle && (j >= iEnd || A[i] <= A[j]))
+		if (i < imiddle && (j >= iend || a[i] <= a[j]))
 		{
-			B[k] = A[i];
+			b[k] = a[i];
 			i = i + 1;
 		} else
 		{
-			B[k] = A[j];
+			b[k] = a[j];
 			j = j + 1;
 		}
 	}
 	printf("Merging...\n[left]: ");
-	for (i = iBegin; i < iMiddle; i++)
+	for (i = ibegin; i < imiddle; i++)
 	{
-		if (iMiddle - i > 1)
-			printf("%d, ", A[i]);
+		if (imiddle - i > 1)
+			printf("%d, ", a[i]);
 		else
-			printf("%d", A[i]); }
+			printf("%d", a[i]); }
 	printf("\n");
 	printf("[right]: ");
-	for (i = iMiddle; i < iEnd; i++)
+	for (i = imiddle; i < iend; i++)
 	{
-		if (iEnd - i > 1)
-			printf("%d, ", A[i]);
+		if (iend - i > 1)
+			printf("%d, ", a[i]);
 		else
-			printf("%d", A[i]); }
+			printf("%d", a[i]); }
 	printf("\n");
 	printf("[Done]: ");
-	for (i = iBegin; i < iEnd; i++)
+	for (i = ibegin; i < iend; i++)
 	{
-		if (iEnd - i > 1)
-			printf("%d, ", B[i]);
+		if (iend - i > 1)
+			printf("%d, ", b[i]);
 		else
-			printf("%d", B[i]); }
+			printf("%d", b[i]); }
 	printf("\n");
 }
 
 /**
- * CopyArray - copies array A to array B from iBegin
- * to iEnd
- * @A: array A
- * @iBegin: start index
- * @iEnd: end index
- * @B: array B
+ * copyarray - copies array a to array b from ibegin
+ * to iend
+ * @a: array a
+ * @ibegin: start index
+ * @iend: end index
+ * @b: array b
  * Return: void
  */
 
-void CopyArray(int *A, int iBegin, int iEnd, int *B)
+void copyarray(int *a, int ibegin, int iend, int *b)
 {
 	int k;
 
-	for (k = iBegin; k < iEnd; k++)
-		B[k] = A[k];
+	for (k = ibegin; k < iend; k++)
+		b[k] = a[k];
 }
