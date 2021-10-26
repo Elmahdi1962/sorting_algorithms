@@ -19,6 +19,7 @@ void merge_sort(int *array, size_t size)
 		return;
 
 	TopDownMergeSort(array, B, size);
+	free(B);
 }
 
 /**
@@ -51,7 +52,9 @@ void TopDownSplitMerge(int *B, int iBegin, int iEnd, int *A)
 	/*merge both runs from int *B to int *A*/
 	/* iBegin is inclusive; iEnd is exclusive (A[iEnd] is not in the set).*/
 	if (iEnd - iBegin <= 1)                     /* if run size == 1*/
-		return;                                 /*   consider it sorted*/
+	{
+		return;	                                /*   consider it sorted*/
+	}
 	/* split the run longer than 1 item into halves*/
 	int iMiddle = (iEnd + iBegin) / 2;              /*iMiddle = mid point*/
 	/* recursively sort both runs from array int *A into int *B*/
