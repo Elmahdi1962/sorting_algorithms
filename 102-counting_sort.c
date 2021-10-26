@@ -20,6 +20,8 @@ void counting_sort(int *array, size_t size)
 		return;
 	k = get_biggest_num(array, size);
 	counter = malloc(sizeof(int) * (k + 1));
+	for (i = 0; i < k + 1; i++)
+		counter[i] = 0;
 
 	if (!counter)
 	{
@@ -34,14 +36,13 @@ void counting_sort(int *array, size_t size)
 	}
 	for (i = 1; i <= k + 1; i++)
 		counter[i] += counter[i - 1];
-
+	print_array(counter, k + 1);
 	for (i = (int)size - 1; i >= 0; i--)
 	{
 		j = array[i];
 		counter[j] -= 1;
 		output[counter[j]] = array[i];
 	}
-	print_array(counter, k + 2);
 	free(counter);
 	fill_array(array, output, size);
 }
