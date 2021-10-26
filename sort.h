@@ -43,8 +43,8 @@ int get_biggest_num(int *array, size_t size);
 void fill_array(int *arra, int *arrb, size_t size);
 
 void topdownmergesort(int *A, int *B, int n);
-void topdownsplitmerge(int *B, int iBegin, int iEnd, int *A);
-void topdownmerge(int *A, int iBegin, int iMiddle, int iEnd, int *B);
+void splitmerge(int *array, int *array_c, size_t size, size_t l, size_t r);
+void topdownmerge(int *array, int *array_c, size_t l, size_t m, size_t r);
 void copyarray(int *A, int iBegin, int iEnd, int *B);
 
 
