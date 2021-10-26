@@ -18,27 +18,27 @@ void merge_sort(int *array, size_t size)
 	if (!b)
 		return;
 
-	TopDownMergeSort(array, b, size);
+	topdownmergesort(array, b, size);
 	free(b);
 }
 
 /**
- * TopDownMergeSort - Top Down Merge Sort
+ * topdownmergesort - Top Down Merge Sort
  * @a: array a
  * @b: array b
  * @n: size of array
  * Return: void
  */
 
-void TopDownMergeSort(int *a, int *b, int n)
+void topdownmergesort(int *a, int *b, int n)
 {
 	/* array int *a has the items to sort; array int *b is a work array.*/
 	copyarray(a, 0, n, b);           /* one time copy of int *a to int *b */
-	TopDownSplitMerge(b, 0, n, a);   /* sort data from int *b into int *a */
+	topdownsplitmerge(b, 0, n, a);   /* sort data from int *b into int *a */
 }
 
 /**
- * TopDownSplitMerge - Top Down Split Merge
+ * topdownsplitmerge - Top Down Split Merge
  * @b: array b
  * @ibegin: start index
  * @iend: end index
@@ -46,7 +46,7 @@ void TopDownMergeSort(int *a, int *b, int n)
  * Return: void
  */
 
-void TopDownSplitMerge(int *b, int ibegin, int iend, int *a)
+void topdownsplitmerge(int *b, int ibegin, int iend, int *a)
 {
 	/* Split int *a into 2 runs, sort both runs into int *b,*/
 	/*merge both runs from int *b to int *a*/
@@ -58,15 +58,15 @@ void TopDownSplitMerge(int *b, int ibegin, int iend, int *a)
 	/* split the run longer than 1 item into halves*/
 	int imiddle = (iend + ibegin) / 2;              /*imiddle = mid point*/
 	/* recursively sort both runs from array int *a into int *b*/
-	TopDownSplitMerge(a, ibegin,  imiddle, b);  /* sort the left  run*/
-	TopDownSplitMerge(a, imiddle,    iend, b);  /* sort the right run*/
+	topdownsplitmerge(a, ibegin,  imiddle, b);  /* sort the left  run*/
+	topdownsplitmerge(a, imiddle,    iend, b);  /* sort the right run*/
 	/* merge the resulting runs from array int *b into int *a*/
-	TopDownMerge(b, ibegin, imiddle, iend, a);
+	topdownmerge(b, ibegin, imiddle, iend, a);
 }
 
 
 /**
- * TopDownMerge - tom down merger
+ * topdownmerge - tom down merger
  * Left source half is a[ ibegin:imiddle-1]
  * Right source half is a[imiddle:iend-1   ]
  * Result is            b[ ibegin:iend-1   ]
@@ -78,7 +78,7 @@ void TopDownSplitMerge(int *b, int ibegin, int iend, int *a)
  * Return: void
  */
 
-void TopDownMerge(int *a, int ibegin, int imiddle, int iend, int *b)
+void topdownmerge(int *a, int ibegin, int imiddle, int iend, int *b)
 {
 	int i = ibegin, j = imiddle, k;
 
