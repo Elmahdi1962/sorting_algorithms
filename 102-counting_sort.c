@@ -19,7 +19,8 @@ void counting_sort(int *array, size_t size)
 	if (!output)
 		return;
 	k = get_biggest_num(array, size);
-	counter = malloc(sizeof(int) * k);
+	counter = malloc(sizeof(int) * (k + 1));
+
 	if (!counter)
 	{
 		free(output);
@@ -31,7 +32,7 @@ void counting_sort(int *array, size_t size)
 		j = array[i];
 		counter[j] += 1;
 	}
-	for (i = 1; i <= k; i++)
+	for (i = 1; i <= k + 1; i++)
 		counter[i] += counter[i - 1];
 
 	for (i = (int)size - 1; i >= 0; i--)
@@ -40,7 +41,7 @@ void counting_sort(int *array, size_t size)
 		counter[j] -= 1;
 		output[counter[j]] = array[i];
 	}
-	print_array(counter, size);
+	print_array(counter, k + 2);
 	free(counter);
 	fill_array(array, output, size);
 }
