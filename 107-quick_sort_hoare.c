@@ -32,37 +32,42 @@ void qsh(int *array, int low, int high, size_t size)
 
 		/* Separately sort elements before*/
 		/* partition and after partition*/
-		qsh(array, low, p - 1, size);
-		qsh(array, p + 1, high, size);
+		qsh(array, low, p - (p == high), size);
+		qsh(array, p - (p == high) + 1, high, size);
 	}
 }
 /**
  * partitionh - hoare partition implementation
  * @arr: array
- * @low: lowest index
- * @high: hghest index
+ * @lo: lowest index
+ * @hi: hghest index
  * @size: size of array
  * Return: new pivot index
  */
 
-int partitionh(int *arr, int low, int high, size_t size)
+int partitionh(int *arr, int lo, int hi, size_t size)
 {
-	int pivot = arr[high];/* pivot*/
-	int i = (low - 1); /* Index of smaller element*/
-	int j;
+	int pivot = arr[hi], i, j;
 
-	for (j = low; j <= high - 1; j++)
+	i = lo - 1;
+
+	j = hi + 1;
+
+	while (1)
 	{
-		/* If current element is smaller than or*/
-		/* equal to pivot*/
-		if (arr[j] <= pivot)
-		{
-			i++;/* increment index of smaller element*/
-			swap(arr, i, j, size);
-		}
+		do {
+			i += 1;
+		} while (arr[i] < pivot);
+
+		do {
+			j -= 1;
+		} while (arr[j] > pivot);
+
+		if (i >= j)
+			return (j);
+
+		swap(arr, i, j, size);
 	}
-	swap(arr, i + 1, high, size);
-	return (i + 1);
 }
 
 /**
@@ -78,11 +83,11 @@ void swap(int *array, int i, int j, size_t size)
 {
 	int tmp;
 
-	if (array[i] != array[j])
+	if (array != NULL)
 	{
 		tmp = array[i];
 		array[i] = array[j];
 		array[j] = tmp;
-		print_array(array, size);
 	}
+	print_array(array, size);
 }
