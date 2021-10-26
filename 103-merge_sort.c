@@ -82,6 +82,11 @@ void topdownmerge(int *a, int ibegin, int imiddle, int iend, int *b)
 {
 	int i = ibegin, j = imiddle, k;
 
+	printf("Merging...\n");
+	printf("[left]: ");
+	print_array(a + ibegin, imiddle - ibegin);
+	printf("[right]: ");
+	print_array(a + (imiddle), iend - imiddle);
 	/* While there are elements in the left or right runs...*/
 	for (k = ibegin; k < iend; k++)
 	{
@@ -96,30 +101,8 @@ void topdownmerge(int *a, int ibegin, int imiddle, int iend, int *b)
 			j = j + 1;
 		}
 	}
-	printf("Merging...\n[left]: ");
-	for (i = ibegin; i < imiddle; i++)
-	{
-		if (imiddle - i > 1)
-			printf("%d, ", a[i]);
-		else
-			printf("%d", a[i]); }
-	printf("\n");
-	printf("[right]: ");
-	for (i = imiddle; i < iend; i++)
-	{
-		if (iend - i > 1)
-			printf("%d, ", a[i]);
-		else
-			printf("%d", a[i]); }
-	printf("\n");
 	printf("[Done]: ");
-	for (i = ibegin; i < iend; i++)
-	{
-		if (iend - i > 1)
-			printf("%d, ", b[i]);
-		else
-			printf("%d", b[i]); }
-	printf("\n");
+	print_array(a + ibegin, iend - ibegin);
 }
 
 /**
