@@ -112,7 +112,7 @@ void TopDownMerge(int *A, int iBegin, int iMiddle, int iEnd, int *B)
 		else
 			printf("%d", A[i]); }
 	printf("\n");
-	printf("[Done]]: ");
+	printf("[Done]: ");
 	for (i = iBegin; i < iEnd; i++)
 	{
 		if (iEnd - i > 1)
