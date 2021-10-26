@@ -67,6 +67,9 @@ void TopDownSplitMerge(int *B, int iBegin, int iEnd, int *A)
 
 /**
  * TopDownMerge - tom down merger
+ * Left source half is A[ iBegin:iMiddle-1]
+ * /* Right source half is A[iMiddle:iEnd-1   ]
+ * /* Result is            B[ iBegin:iEnd-1   ]
  * @A: array A, the unsorted array
  * @iBegin: start index
  * @iMiddle: middle index that splits the subarrays
@@ -74,10 +77,6 @@ void TopDownSplitMerge(int *B, int iBegin, int iEnd, int *A)
  * @B: array b where sorted array will be
  * Return: void
  */
-
-/*  Left source half is A[ iBegin:iMiddle-1].*/
-/* Right source half is A[iMiddle:iEnd-1   ].*/
-/* Result is            B[ iBegin:iEnd-1   ].*/
 
 void TopDownMerge(int *A, int iBegin, int iMiddle, int iEnd, int *B)
 {
