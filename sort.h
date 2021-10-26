@@ -30,6 +30,7 @@ void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 void quick_sort_hoare(int *array, size_t size);
 void counting_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
 
 /* helper functions */
 void qs(int *arr, int low, int high, size_t size);
@@ -40,5 +41,11 @@ int partitionh(int *arr, int low, int high, size_t size);
 void swap(int *array, int i, int j, size_t size);
 int get_biggest_num(int *array, size_t size);
 void fill_array(int *arra, int *arrb, size_t size);
+
+void TopDownMergeSort(int *A, int *B, int n);
+void TopDownSplitMerge(int *B, int iBegin, int iEnd, int *A);
+void TopDownMerge(int *A, int iBegin, int iMiddle, int iEnd, int *B);
+void CopyArray(int *A, int iBegin, int iEnd, int *B);
+
 
 #endif
